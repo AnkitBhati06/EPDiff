@@ -1,0 +1,61 @@
+# Config sized for a 6 GB laptop GPU (e.g. RTX 4050).
+# Same as config.yaml except for the memory-related settings below.
+data_root: data/BraTS2021
+label_file: null
+modalities:
+- t1
+- t1ce
+- t2
+- flair
+target_shape:
+- 240
+- 240
+- 155
+patch_size:
+- 96
+- 96
+- 96
+norm_method: z_score
+fg_ratio: 0.5
+cache_data: false
+use_sampler: true
+model_type: 3d
+num_modalities: 4
+num_seg_classes: 4
+num_grade_classes: 3
+base_channels: 16
+fusion_type: se_modality
+shared_encoder: false
+dropout: 0.1
+loss_type: multitask
+lambda_seg: 1.0
+lambda_grade: 0.5
+lambda_aux: 0.01
+gamma: 2.0
+label_smoothing: 0.1
+use_class_weights: true
+optimizer: adamw
+lr: 0.0001
+lr_min: 1.0e-07
+weight_decay: 1.0e-05
+grad_clip: 1.0
+scheduler: warmup_cosine
+warmup_epochs: 10
+cosine_T0: 50
+cosine_Tmult: 2
+patience_lr: 15
+epochs: 150
+batch_size: 1
+num_workers: 4
+pin_memory: true
+amp: true
+seed: 42
+log_every: 20
+patience: 30
+compute_hd95_val: false
+output_dir: output/rtx4050
+resume: null
+compute_hd95_test: true
+sw_overlap: 0.5
+sw_batch_size: 1
+val_sliding_window: true
